@@ -25,7 +25,7 @@ public class Ventana extends JFrame{
         
         botonHerra.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                BarraHerramienta barra = new BarraHerramienta();
+                BarraHerramienta barra = new BarraHerramienta(panelContenido);
                 panelContenido.add(barra);
             }
         });
