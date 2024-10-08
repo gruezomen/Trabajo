@@ -13,31 +13,72 @@ public class BarraHerramienta extends JInternalFrame{
     
     public BarraHerramienta(JDesktopPane ventana){
         super("Barra de Herramientas", true, true, true, true);
-        this.setSize(200, 250);
+        this.setSize(600, 400);
         this.setLocation(50,50);
         this.setVisible(true);
         
         
         contentPane = new JPanel();
         contentPane.setLayout(null);
-        setContentPane(contentPane);
+        this.setContentPane(contentPane);
         
-        JButton clase = new  JButton("Clase");
-        clase.setBounds(20,20, 70, 30);
-        contentPane.add(clase);
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+
+        JButton botonClase = new JButton(loadIcon("Imagenes/Clase2.png", 120, 50));
+        botonClase.setToolTipText("Define Atributos y metodos");
+
+        JButton botonAsociacion = new JButton(loadIcon("Imagenes/Asociacion.png", 120, 50));
+        botonAsociacion.setToolTipText("Conecta dos clases donde una usa o tiene referencia a la otra.");
         
-        JButton relacion = new  JButton("Relacion");
-        relacion.setBounds(90,20, 90, 30);
-        contentPane.add(relacion);
+        JButton botonComposicion = new JButton(loadIcon("Imagenes/Composicion.png", 120, 50));
+        botonComposicion.setToolTipText("Relacion donde una clase depende de la otra para existir");
         
+        JButton botonAgregacion = new JButton(loadIcon("Imagenes/Agregacion.png", 120, 50));
+        botonAgregacion.setToolTipText("Relacion donde una clase puede existir sin importar del otro");
         
-        clase.addActionListener(new ActionListener(){
+        JButton botonGeneralizacion = new JButton(loadIcon("Imagenes/Generalizacion.png", 120, 50));
+        botonGeneralizacion.setToolTipText("Jerarquia de clases");
+
+        botonClase.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 Clase panelC = new Clase();
                 ventana.add(panelC);
                 
             }
         });
+        
+        
+        Dimension buttonSize = new Dimension(120, 50);
+        botonClase.setPreferredSize(buttonSize);
+        botonAsociacion.setPreferredSize(buttonSize);
+        botonComposicion.setPreferredSize(buttonSize);
+        botonAgregacion.setPreferredSize(buttonSize);
+        botonGeneralizacion.setPreferredSize(buttonSize);
+
+        botonClase.setMaximumSize(buttonSize);
+        botonAsociacion.setMaximumSize(buttonSize);
+        botonComposicion.setMaximumSize(buttonSize);
+        botonAgregacion.setMaximumSize(buttonSize);
+        botonGeneralizacion.setMaximumSize(buttonSize);
+        // joel
+        
+        contentPane.add(botonClase);
+        contentPane.add(botonAsociacion);
+        contentPane.add(botonComposicion);
+        contentPane.add(botonAgregacion);
+        contentPane.add(botonGeneralizacion);
+        
+         contentPane.add(Box.createRigidArea(new Dimension(0, 10)));
+        
+        
+        
+    }
+    
+    private static ImageIcon loadIcon(String path, int width, int height){
+        ImageIcon originalIcon = new ImageIcon(Visualizacion.class.getResource("/" + path));
+        Image originalImage = originalIcon.getImage();
+        Image scaledImage = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        return new ImageIcon(scaledImage);
     }
     
 }
